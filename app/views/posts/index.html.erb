@@ -1,5 +1,17 @@
 <h1>Spamagram</h1>
 
+<% if @posts.any? %>
+
+  <%= @posts.each do |post| %>
+    <%= image_tag post.image.url(:medium) %> <!-- image_tag is a rails helper to display images, replaces post.image -->
+    <%= post.caption %>
+  <% end %>
+
+
+<% else %>
+
   <p>No posts yet</p>
+
+<% end %>
 
   <%= link_to 'Add Post', new_post_path %>
