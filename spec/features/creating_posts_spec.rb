@@ -10,7 +10,18 @@ feature 'posts' do
     end
   end
 
-  context 'adding post' do
+  context 'posts have been added' do
+    before { create(:post, caption: 'My first post') }
+
+    scenario 'homepage should display posts' do
+      visit '/'
+      expect(page).to have_content 'My first post'
+      expect(page).not_to have_content 'No posts yet'
+    end
+
+  end
+
+  context 'user adding post' do
     scenario 'should not be able to post without uploading image' do
       visit '/'
       click_link 'Add Post'
@@ -30,6 +41,12 @@ feature 'posts' do
       expect(page).not_to have_content 'No posts yet'
     end
   end
+
+  # context 'editing posts' do
+  #   scenario ''
+  #
+  #
+  # end
 
 
 end
