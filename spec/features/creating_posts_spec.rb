@@ -10,7 +10,15 @@ feature 'posts' do
     end
   end
 
-  context 'post added' do
+  context 'adding post' do
+    scenario 'should not be able to post without uploading image' do
+      visit '/'
+      click_link 'Add Post'
+      fill_in 'Caption', with: "no image lol"
+      click_button 'Create Post'
+      expect(page).to have_content 'You need to upload an image'
+    end
+
     scenario 'should display post on posts page' do
       visit '/'
       click_link 'Add Post'
