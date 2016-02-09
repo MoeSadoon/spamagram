@@ -1,8 +1,8 @@
 
 <% if @posts.any? %>
 
-  <div class="posts-wrapper">
-    <%= @posts.each do |post| %>
+  <div class="posts-wrapper row">
+    <% @posts.each do |post| %>
       <div class="post">
         <div class ="post-head">
           <div class="name">
