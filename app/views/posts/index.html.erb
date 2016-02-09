@@ -1,11 +1,20 @@
-<h1>Spamagram</h1>
 
 <% if @posts.any? %>
 
-  <%= @posts.each do |post| %>
-    <%= link_to (image_tag post.image.url(:medium), class: 'img-response'), post_path(post) %> <!-- image_tag is a rails helper to display images, replaces post.image -->
-    <%= post.caption %>
-  <% end %>
+  <div class="posts-wrapper">
+    <%= @posts.each do |post| %>
+      <div class="post">
+        <div class ="post-head">
+          <div class="name">
+            Moe Sadoon
+          </div>
+        </div>
+          <div class="image center-block">
+            <%= link_to (image_tag post.image.url(:medium), class: 'img-response'), post_path(post) %> <!-- image_tag is a rails helper to display images, replaces post.image -->
+        </div>
+            <p class="caption"><%= post.caption %></p>
+          <% end %>
+      </div>
 
 
 <% else %>
