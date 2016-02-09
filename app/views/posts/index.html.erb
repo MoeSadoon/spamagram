@@ -3,7 +3,7 @@
 <% if @posts.any? %>
 
   <%= @posts.each do |post| %>
-    <%= image_tag post.image.url(:medium) %> <!-- image_tag is a rails helper to display images, replaces post.image -->
+    <%= link_to (image_tag post.image.url(:medium), class: 'img-response'), post_path(post) %> <!-- image_tag is a rails helper to display images, replaces post.image -->
     <%= post.caption %>
   <% end %>
 

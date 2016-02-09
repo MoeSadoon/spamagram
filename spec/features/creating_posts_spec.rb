@@ -42,11 +42,30 @@ feature 'posts' do
     end
   end
 
+  context 'viewing individual posts' do
+    before { create(:post, caption: 'My first post') }
+
+    scenario 'should be able to go to individual post by clicking on image' do
+      visit '/'
+      find(:xpath, "//a[contains(@href,'posts/1')]").click
+      expect(page.current_path).to eq(post_path(post))
+    end
+
+  end
+
+
   # context 'editing posts' do
-  #   scenario ''
+  #   before { create(:post, caption: 'I should really edit this') }
+  #
+  #   scenario 'should be able to edit existing post' do
+  #     visit '/'
+  #     click_link 'Edit post'
   #
   #
-  # end
+  #   end
+
+
+
 
 
 end
