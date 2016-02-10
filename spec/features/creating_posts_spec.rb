@@ -18,7 +18,6 @@ feature 'posts' do
       expect(page).to have_content 'My first post'
       expect(page).not_to have_content 'No posts yet'
     end
-
   end
 
   context 'user adding post' do
@@ -42,30 +41,24 @@ feature 'posts' do
     end
   end
 
-  context 'viewing individual posts' do
-    before { create(:post, caption: 'My first post') }
+  context 'dealing with individual posts' do
+    before { @post = create(:post, caption: 'My first post')
+              visit "/posts/#{@post.id}" }
 
-    scenario 'should be able to go to individual post by clicking on image' do
-      visit '/'
-      find(:xpath, "//a[contains(@href,'posts/1')]").click
-      # expect(page.current_path).to eq(post_path(post))
-      # expect(page).to have_content 'My first post'
-
+    scenario 'should be able to view individual post on own page' do
+      expect(page.current_path).to eq(post_path(@post))
+      expect(page).to have_content 'My first post'
+      expect(page).to have_css("img[src*='coffee.jpg']")
     end
 
+    scenario 'should be able to edit existing post' do
+      click_link 'Edit Post'
+      fill_in 'Caption', with: "You weren't supposed to see this!"
+      click_button 'Update Post'
+      expect(page).to have_content 'Post successfully updated'
+      expect(page).to have_content "You weren't supposed to see this!"
+    end
   end
-
-
-  # context 'editing posts' do
-  #   before { create(:post, caption: 'I should really edit this') }
-  #
-  #   scenario 'should be able to edit existing post' do
-  #     visit '/'
-  #     click_link 'Edit post'
-  #
-  #
-  #   end
-
 
 
 
