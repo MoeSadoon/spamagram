@@ -58,6 +58,14 @@ feature 'posts' do
       expect(page).to have_content 'Post successfully updated'
       expect(page).to have_content "You weren't supposed to see this!"
     end
+
+    scenario 'should be able to delete a post' do
+      click_link 'Edit Post'
+      click_link 'Delete Post'
+      expect(page.current_path).to eq(root_path)
+      expect(page).to have_content 'Post successfully deleted'
+      expect(page).not_to have_content 'My first post'
+    end
   end
 
 

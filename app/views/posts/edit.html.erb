@@ -11,3 +11,9 @@
     </div>
   <% end %>
 </div>
+
+<div class="text-center edit-links">
+  <%= link_to 'Delete Post', post_path(@post), method: :delete %>
+  |
+  <%= link_to 'Cancel', post_path(@post) %>
+</div>
