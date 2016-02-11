@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'posts' do
 
   context 'no posts have been added' do
-    scenario 'should display link to add a new post' do
+    it 'should display link to add a new post' do
       visit '/'
       expect(page).to have_content 'No posts yet'
       expect(page).to have_link 'Add Post'
@@ -21,7 +21,7 @@ feature 'posts' do
   end
 
   context 'user adding post' do
-    scenario 'should not be able to post without uploading image' do
+    it 'should not be able to post without uploading image' do
       visit '/'
       click_link 'Add Post'
       fill_in 'Caption', with: "no image lol"
@@ -29,7 +29,7 @@ feature 'posts' do
       expect(page).to have_content 'You need to upload an image'
     end
 
-    scenario 'should display post on posts page' do
+    it 'should display post on posts page' do
       visit '/'
       click_link 'Add Post'
       attach_file('Image', "spec/files/images/coffee.jpg")
@@ -45,13 +45,13 @@ feature 'posts' do
     before { @post = create(:post, caption: 'My first post')
               visit "/posts/#{@post.id}" }
 
-    scenario 'should be able to view individual post on own page' do
+    it 'should be able to view individual post on own page' do
       expect(page.current_path).to eq(post_path(@post))
       expect(page).to have_content 'My first post'
       expect(page).to have_css("img[src*='coffee.jpg']")
     end
 
-    scenario 'should be able to edit existing post' do
+    it 'should be able to edit existing post' do
       click_link 'Edit Post'
       fill_in 'Caption', with: "You weren't supposed to see this!"
       click_button 'Update Post'
@@ -59,7 +59,7 @@ feature 'posts' do
       expect(page).to have_content "You weren't supposed to see this!"
     end
 
-    scenario 'should be able to delete a post' do
+    it 'should be able to delete a post' do
       click_link 'Edit Post'
       click_link 'Delete Post'
       expect(page.current_path).to eq(root_path)
