@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'users' do
+feature 'Users' do
 
   context 'not signed in' do
     it 'should display login or register link' do
@@ -16,9 +16,9 @@ feature 'users' do
   end
 
   context 'user signed up' do
-    before(:each) {
-      @user = create(:user)
-      sign_in(@user)
+    before {
+      @user = create :user
+      sign_in @user
     }
 
     it 'should see sign out link' do
@@ -32,8 +32,5 @@ feature 'users' do
       expect(page).not_to have_link 'Register'
     end
   end
-
-
-
 
 end

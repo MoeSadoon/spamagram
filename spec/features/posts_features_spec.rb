@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-feature 'posts' do
-  before(:each) { @user = create(:user)
-                  sign_in(@user)
+feature 'Posts' do
+  before { @user = create :user
+           sign_in @user
   }
 
   context 'no posts have been added' do
@@ -71,8 +71,5 @@ feature 'posts' do
       expect(page).not_to have_content 'My first post'
     end
   end
-
-
-
 
 end
