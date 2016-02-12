@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 feature 'posts' do
+  before(:each) { @user = create(:user)
+                  sign_in(@user)
+  }
 
   context 'no posts have been added' do
     it 'should display link to add a new post' do
@@ -42,8 +45,9 @@ feature 'posts' do
   end
 
   context 'dealing with individual posts' do
-    before { @post = create(:post, caption: 'My first post')
-              visit "/posts/#{@post.id}" }
+    before {
+            @post = create(:post, caption: 'My first post')
+            visit "/posts/#{@post.id}" }
 
     it 'should be able to view individual post on own page' do
       expect(page.current_path).to eq(post_path(@post))
