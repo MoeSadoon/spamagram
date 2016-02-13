@@ -67,7 +67,8 @@ feature 'Posts' do
       sign_in @user2
       visit "/posts/#{@user.posts.first.id}"
       expect(page).not_to have_link 'Edit Post'
-
+      visit "/posts/#{@user.posts.first.id}/edit"
+      expect(page).to have_content 'That post does not belong to you!'
     end
 
     it 'should be able to delete a post' do
