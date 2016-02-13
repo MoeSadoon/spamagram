@@ -17,4 +17,12 @@ module SessionHelpers
     click_button 'Log in'
   end
 
+  def user_creates_post
+    visit '/'
+    click_link 'Add Post'
+    attach_file('Image', "spec/files/images/coffee.jpg")
+    fill_in 'Caption', with: 'This is some nice java!'
+    click_button 'Create Post'
+    visit "/posts/#{@user.posts.first.id}"
+  end
 end

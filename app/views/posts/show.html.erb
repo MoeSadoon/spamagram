@@ -2,7 +2,7 @@
   <div class="post">
     <div class="post-head">
       <div class="name">
-        Moe Sadoon
+        <%= @post.user.username unless @post.user.blank? %>
       </div>
     </div>
     <div class="image center-block">
@@ -11,10 +11,16 @@
     <p class="caption">
       <%= @post.caption %>
     </p>
-    <div class="text-center edit-links">
-      <%= link_to "Go back", posts_path %>
-      |
-      <%= link_to "Edit Post", edit_post_path(@post) %>
-    </div>
+    <% if current_user.id == @post.user_id %>
+      <div class="text-center edit-links">
+        <%= link_to "Go back", posts_path %>
+        |
+        <%= link_to "Edit Post", edit_post_path(@post) %>
+      </div>
+      <% else %>
+        <div class="text-center edit-links">
+          <%= link_to "Go back", posts_path %>
+        </div>
+      <% end %>
   </div>
 </div>

@@ -3,6 +3,7 @@ require 'rails_helper'
 feature 'Posts' do
   before { @user = create :user
            sign_in @user
+           @user2 = create :user, email: 'test2@hotmail.com'
   }
 
   context 'no posts have been added' do
@@ -45,13 +46,11 @@ feature 'Posts' do
   end
 
   context 'dealing with individual posts' do
-    before {
-            @post = create(:post, caption: 'My first post')
-            visit "/posts/#{@post.id}" }
+    before { user_creates_post }
 
     it 'should be able to view individual post on own page' do
-      expect(page.current_path).to eq(post_path(@post))
-      expect(page).to have_content 'My first post'
+      expect(page.current_path).to eq("/posts/#{@user.posts.first.id}")
+      expect(page).to have_content 'This is some nice java!'
       expect(page).to have_css("img[src*='coffee.jpg']")
     end
 
@@ -61,6 +60,14 @@ feature 'Posts' do
       click_button 'Update Post'
       expect(page).to have_content 'Post successfully updated'
       expect(page).to have_content "You weren't supposed to see this!"
+    end
+
+    it 'should only be able to edit their own posts' do
+      click_link 'Logout'
+      sign_in @user2
+      visit "/posts/#{@user.posts.first.id}"
+      expect(page).not_to have_link 'Edit Post'
+
     end
 
     it 'should be able to delete a post' do
