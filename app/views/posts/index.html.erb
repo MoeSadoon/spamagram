@@ -1,55 +1,9 @@
 
 <% if @posts.any? %>
-
-  <div class="posts-wrapper row">
-    <% @posts.each do |post| %>
-      <div class="post">
-        <div class ="post-head">
-          <div class="thumb-img"></div>
-          <div class="user-name">
-            <%= post.user.username unless post.user.blank? %>
-          </div>
-        </div>
-          <div class="image center-block">
-            <%= link_to (image_tag post.image.url(:medium), class: 'img-response'), post_path(post) %><!-- image_tag is a rails helper to display images, replaces post.image -->
-        </div>
-        <div class="post-bottom">
-          <div class="caption">
-            <div class="user-name">
-              <%= post.user.username unless post.user.blank? %>
-            </div>
-              <%= post.caption %>
-          </div>
-          <% if post.comments %>
-            <% post.comments.each do |comment| %>
-              <div class="comment">
-                <div class="username">
-                  <%= comment.user.username %>
-                </div>
-                <div class="comment-content">
-                  <%= comment.content %>
-                </div>
-                <% if comment.user == current_user %>
-                  <%= link_to 'Delete Comment', post_comment_path(post, comment), method: :delete, data: { confirm: "Are you sure?" } %>
-                <% end %>
-              </div>
-            <% end %>
-          <% end %>
-          <div class="comment-form">
-            <%= form_for [post, post.comments.new] do |f| %>
-              <%= f.text_field :content, placeholder: 'Add a comment...' %>
-              <%= f.submit %>
-            <% end %>
-          </div>
-      </div>
-    <% end %>
-  </div>
-
-
+  <% @posts.each do |post| %>
+    <%= render 'post', post: post %>
+  <% end %>
 <% else %>
-
   <p>No posts yet</p>
-
 <% end %>
-
   <%= link_to 'Add Post', new_post_path %>
