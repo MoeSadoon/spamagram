@@ -33,6 +33,16 @@ feature 'Posts' do
       expect(page).to have_content 'You need to upload an image'
     end
 
+    it 'should not be able to post a caption less than 3 characters' do
+      visit '/'
+      click_link 'Add Post'
+      attach_file('Image', "spec/files/images/coffee.jpg")
+      fill_in 'Caption', with: "zy"
+      click_button 'Create Post'
+      expect(page).to have_content 'is too short'
+      expect(page).not_to have_content 'zy'
+    end
+
     it 'should display post on posts page' do
       visit '/'
       click_link 'Add Post'
