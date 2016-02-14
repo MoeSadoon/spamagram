@@ -30,12 +30,14 @@
       <div class="like-button col-sm-1">
         <span class="glyphicon glyphicon-heart-empty"></span>
       </div>
+      <% if current_user != nil %>
       <div class="comment-form col-sm-11">
         <%= form_for([post, post.comments.build], remote: true) do |f| %>
           <%= f.text_field :content, placeholder: 'Add a comment...' %>
           <%= f.submit %>
         <% end %>
       </div>
+      <% end %>
     </div>
   </div>
 </div>
