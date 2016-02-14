@@ -14,6 +14,9 @@
         <div class="user-name">
           <%= post.user.username unless post.user.blank? %>
         </div>
+        <div class='time-ago'>
+          <%= time_ago_in_words post.created_at %>
+        </div>
         <%= post.caption %>
       </div>
       <div class="comments" id="comments_<%= post.id %>">
