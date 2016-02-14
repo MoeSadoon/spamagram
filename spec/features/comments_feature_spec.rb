@@ -11,7 +11,6 @@ feature 'Comments' do
       visit '/'
       fill_in 'comment_content', with: 'Wow'
       click_button 'Create Comment'
-      expect(page).to have_content 'Your comment has been posted'
       expect(page).to have_content 'Wow'
     end
   end
@@ -21,8 +20,7 @@ feature 'Comments' do
       visit '/'
       fill_in 'comment_content', with: 'Wow'
       click_button 'Create Comment'
-      click_link 'Delete Comment'
-      expect(page).to have_content 'Comment successfully deleted'
+      click_link 'Delete'
       expect(page).not_to have_content 'Wow'
     end
   end

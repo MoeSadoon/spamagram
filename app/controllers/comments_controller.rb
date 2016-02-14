@@ -4,9 +4,15 @@ class CommentsController < ApplicationController
   def create
     @comment = @post.comments.build(comment_params)
     @comment.user_id = current_user.id
+
     if @comment.save
-      flash[:success] = "Your comment has been posted"
-      redirect_to :back
+      respond_to do |format|
+        format.html {redirect_to root_path}
+        format.js
+      end
+
+      # flash[:success] = "Your comment has been posted"
+      # redirect_to :back
     else
       flash[:alert] = "Error, check comment form"
       render root_path
