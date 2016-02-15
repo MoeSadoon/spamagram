@@ -4,6 +4,10 @@
     <%= render 'post', post: post %>
   <% end %>
 <% else %>
-  <p>No posts yet</p>
+  <div class="form-group text-center">
+    No posts yet
+  </div>
 <% end %>
+<div class="form-group text-center">
   <%= link_to 'Add Post', new_post_path %>
+</div>

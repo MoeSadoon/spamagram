@@ -1,28 +1,24 @@
-== README
+Spamagram
+=================
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Premise
+---------
+An instagram clone built on rails and test-driven with rspec and capybara.
 
-Things you may want to cover:
+Live demo at: http://spamagram.herokuapp.com/
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Technology
+---------
+* Ruby on rails
+* jQuery
+* Capybara - end-to-end testing
+* RSpec - Unit-testing
+* Bootstrap
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Running tests
+-------
+1. Clone this repo
+2. Run  the command `gem install bundle` in project directory
+3. When the installation completes, run `bundle`
+4. Run 'rspec'
