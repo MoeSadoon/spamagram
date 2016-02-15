@@ -1,4 +1,4 @@
-Spamagram
+# Spamagram
 =================
 
 Premise
@@ -6,6 +6,7 @@ Premise
 An instagram clone built on rails and test-driven with rspec and capybara.
 
 Live demo at: http://spamagram.herokuapp.com/
+
 
 Technology
 ---------
