@@ -18,6 +18,12 @@ feature 'User profiles' do
       click_link "#{@user.username}"
       expect(current_path).to eq "/#{@user.username}"
     end
+
+    it 'should only see user\'s posts on their page' do
+      visit "/#{@user.username}"
+      expect(page).to have_content 'user1 post'
+      expect(page).not_to have_content 'user2 post'
+    end
   end
 
 end
