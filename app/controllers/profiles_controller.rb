@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :owned_profile, only: [:edit, :update]
+  before_action :set_user
 
   def show
     @user = User.find_by(username: params[:username])
@@ -36,5 +37,8 @@ class ProfilesController < ApplicationController
       end
     end
 
+  def set_user
+    @user = User.find_by(username: params[:username])
+  end
 
 end
