@@ -15,6 +15,7 @@ Technology
 * Capybara - end-to-end testing
 * RSpec - Unit-testing
 * Bootstrap
+* AWS S3 - image hosting
 
 
 Running tests

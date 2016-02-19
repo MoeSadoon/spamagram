@@ -35,6 +35,13 @@ feature 'User profiles' do
       expect(page).to have_content 'Your profile has been updated'
       expect(page).to have_content 'I am user1'
     end
+
+    it 'should not be able to edit other user\'s profiles' do
+      sign_in(@user2)
+      visit "/#{@user.username}/edit"
+      expect(current_path).to eq root_path
+      expect(page).to have_content 'You cannot edit this!'
+    end
   end
 
 
