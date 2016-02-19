@@ -3,7 +3,7 @@
     <div class="post-head">
       <div class="thumb-img"></div>
       <div class="user-name">
-        <%= post.user.username unless post.user.blank? %>
+        <%= link_to post.user.username, profile_path(post.user.username) unless post.user.blank? %>
       </div>
     </div>
     <div class="image center-block">
