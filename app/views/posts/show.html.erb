@@ -1,5 +1,5 @@
 <%= render 'post', post: @post %>
-<% if current_user.id == @post.user_id %>
+<% if current_user && current_user.id == @post.user_id %>
   <div class="text-center edit-links">
     <%= link_to "Go back", posts_path %>
     |
